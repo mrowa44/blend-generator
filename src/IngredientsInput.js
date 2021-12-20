@@ -13,7 +13,7 @@ const IngredientsInput = (props) => {
   };
   React.useEffect(() => {
     onChange(INGREDIENTS);
-  }, []);
+  }, [onChange]);
   return (
     <div>
       <textarea

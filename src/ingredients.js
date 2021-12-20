@@ -1,4 +1,4 @@
-export default [
+const ingredients = [
 // "ziołowa polana mieszanka ziołowa",
 // "babie lato mieszanka ziołowa",
 // "złocisty poranek mieszanka ziołowa",
@@ -89,3 +89,5 @@ export default [
 "przytulia ziele przytulii",
 "aronia owoc suszony",
 ];
+
+export default ingredients;
