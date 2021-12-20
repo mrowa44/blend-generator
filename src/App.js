@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useCallback} from 'react';
 
 import './App.css';
 
@@ -12,7 +12,7 @@ function getRandomItem(arr) {
 
 function getRandomBlend(arr, ingCount = 3) {
   const ing = [];
-  for (let n of Array(ingCount).keys()) {
+  for (let n of Array(ingCount).keys()) { // eslint-disable-line
     ing.push(getRandomItem(arr));
   }
   return ing.sort().join(' + ');
@@ -29,7 +29,7 @@ function getNewUniqBlend(ingredients, blends, ingCount) {
 
 function getNewBlends(ingList) {
   const blends = [];
-  for (let n of Array(BLENDS_LIMIT).keys()) {
+  for (let n of Array(BLENDS_LIMIT).keys()) { // eslint-disable-line
     blends.push(getNewUniqBlend(ingList, blends));
   }
   return blends;
@@ -38,16 +38,17 @@ function getNewBlends(ingList) {
 function App() {
   const [ingredients, setIngredients] = React.useState('');
   const [generatedBlends, setGeneratedBlends] = React.useState([]);
-  const handleGenerate = () => {
+  const handleGenerate = useCallback(() => {
     const ingList = ingredients.split('\n');
     setGeneratedBlends(getNewBlends(ingList));
-  };
+  }, [ingredients])
 
+  const firstIng = ingredients[0];
   React.useEffect(() => {
     if (ingredients.length > 0) {
       handleGenerate();
     }
-  }, [ingredients[0]]);
+  }, [firstIng, handleGenerate, ingredients.length]);
 
   return (
     <div className="App">
