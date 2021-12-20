@@ -4,7 +4,7 @@ import './App.css';
 
 import IngredientsInput from './IngredientsInput';
 
-const BLENDS_LIMIT = 10;
+const BLENDS_LIMIT = 15;
 
 function getRandomItem(arr) {
   return arr[Math.floor(Math.random() * arr.length)];
@@ -43,6 +43,12 @@ function App() {
     setGeneratedBlends(getNewBlends(ingList));
   };
 
+  React.useEffect(() => {
+    if (ingredients.length > 0) {
+      handleGenerate();
+    }
+  }, [ingredients[0]]);
+
   return (
     <div className="App">
       <IngredientsInput onChange={setIngredients} />
@@ -50,7 +56,7 @@ function App() {
         type="button"
         onClick={handleGenerate}
       >
-        Generuj
+        Generuj →
       </button>
       <ul className="list">
         {generatedBlends.map((blend) => (
